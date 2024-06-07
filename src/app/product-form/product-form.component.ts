@@ -15,12 +15,14 @@ export class ProductFormComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<ProductoService>,
     @Inject(MAT_DIALOG_DATA) public data: Producto,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private productoService: ProductoService
+  ) { }
 
   ngOnInit(): void {
     this.initForm()
   }
-  
+
   initForm() {
     if (!this.data) {
       this.formGroup = this.formBuilder.group({
@@ -46,7 +48,21 @@ export class ProductFormComponent implements OnInit {
   }
 
   save(): void {
-    this.dialogRef.close();
+    if (this.formGroup.valid) {
+      const productoData = this.formGroup.value;
+      this.productoService.createProduct(productoData).subscribe(
+        (response) => {
+          console.log('Producto creado exitosamente', response);
+          this.dialogRef.close(true);
+        },
+        (error) => {
+          console.error('Error al crear el producto', error);
+        }
+      );
+    } else {
+      console.error('El formulario no es válido');
+      this.dialogRef.close(false);
+    }
   }
 
 }

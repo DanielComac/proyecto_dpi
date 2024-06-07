@@ -2,7 +2,39 @@
 <h2 mat-dialog-title *ngIf="data">Editar producto</h2>
 
 <mat-dialog-content>
-    <h1>Hola mundo</h1>
+    <form [formGroup]="formGroup">
+        <mat-form-field appearance="outline">
+            <mat-label>NOMBRE</mat-label>
+            <input matInput formControlName="name" required="true">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>CODIGO</mat-label>
+            <input matInput formControlName="code" required="true">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>CATEGORIA</mat-label>
+            <input matInput formControlName="category" required="true">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>PRECIO</mat-label>
+            <span matTextPrefix>$ &nbsp;</span>
+            <input matInput formControlName="price" required="true">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>DESCRIPCION</mat-label>
+            <input matInput formControlName="description" required="true">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>CANTIDAD</mat-label>
+            <input matInput formControlName="amount" type="number" required="true">
+        </mat-form-field>
+
+    </form>
 </mat-dialog-content>
 
 <mat-dialog-actions>
