@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Producto } from 'src/app/model/producto';
+import { ProductFormComponent } from 'src/app/product-form/product-form.component';
 import { ProductoService } from 'src/app/service/producto.service';
 
 @Component({
@@ -48,6 +49,32 @@ export class ListaProductosComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ProductFormComponent, {
+      data: null,
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log("The dialog was closed");
+      if(result) {
+        this.productListMethod();
+      }
+    });
+  }
+
+  editDialog(element:Producto) {
+    const dialogRef = this.dialog.open(ProductFormComponent, {
+      data: element,
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log("The dialog was closed");
+      if(result){
+        this.productListMethod();
+      }
+    })
   }
 }
 

@@ -17,12 +17,14 @@ import {MatIconModule} from '@angular/material/icon';
 import { ListaProductosComponent } from './view/lista-productos/lista-productos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ProductFormComponent } from './product-form/product-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
-    ListaProductosComponent
+    ListaProductosComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
