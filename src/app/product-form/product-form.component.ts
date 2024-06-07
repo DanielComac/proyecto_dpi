@@ -45,4 +45,8 @@ export class ProductFormComponent implements OnInit {
 
   }
 
+  save(): void {
+    this.dialogRef.close();
+  }
+
 }
