@@ -13,9 +13,7 @@ export class ListaProductosComponent implements OnInit {
   ListaProductos: Producto[] = [];
   productList!: MatTableDataSource<Producto>;
 
-  columnsHeader = ["date", "name", "price", "amount", "status", "opciones"]
-
-  // constructor(private productService:ProductoService){}
+  columnsHeader = ["date", "name", "price", "amount", "status", "opciones"];
 
   constructor(private productService: ProductoService,
     public dialog: MatDialog
@@ -29,30 +27,26 @@ export class ListaProductosComponent implements OnInit {
     try {
       this.productService.getProducts()
         .subscribe(item => this.productList = new MatTableDataSource(item))
-
     } catch (error) {
       console.log(error)
     }
-
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-
     this.productList.filter = filterValue.trim();
-
   }
 
 
   async getProduct() {
     try {
       this.productService.getProducts()
-        .subscribe(item => this.ListaProductos = item);
-      console.log(this.ListaProductos);
-    }
-    catch (error) {
+        .subscribe(item => {
+          this.productList = new MatTableDataSource(item); // Asignación correcta a productList
+          console.log(this.productList.data); // Verifica los datos aquí
+        });
+    } catch (error) {
       console.log(error);
-
     }
   }
 }
