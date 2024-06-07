@@ -1,5 +1,24 @@
-<div class="col-lg-8 col-md-10 col-sm-12">
-  <div *ngFor="let Producto of ListaProductos">
-    <p>Nombre: {{Producto.name}}, Precio:{{Producto.price}}</p>
-  </div>
+<div class="table-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Categoría</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of ListaProductos">
+        <td>{{producto.id}}</td>
+        <td>{{producto.code}}</td>
+        <td>{{producto.name}}</td>
+        <td>{{producto.category}}</td>
+        <td>{{producto.description}}</td>
+        <td>{{producto.price}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
