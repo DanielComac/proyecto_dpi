@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { Producto } from 'src/app/model/producto';
 import { ProductoService } from 'src/app/service/producto.service';
 
@@ -7,26 +9,51 @@ import { ProductoService } from 'src/app/service/producto.service';
   templateUrl: './lista-productos.component.html',
   styleUrls: ['./lista-productos.component.scss']
 })
-export class ListaProductosComponent implements OnInit{
-  ListaProductos:Producto[]=[];
+export class ListaProductosComponent implements OnInit {
+  ListaProductos: Producto[] = [];
+  productList!: MatTableDataSource<Producto>;
 
-  constructor(private productService:ProductoService){}
+  columnsHeader = ["date", "name", "price", "amount", "status", "opciones"]
 
-ngOnInit(): void {
-  this.getProduct()
-}
+  // constructor(private productService:ProductoService){}
 
+  constructor(private productService: ProductoService,
+    public dialog: MatDialog
+  ) { }
 
-  async getProduct(){
-    try{
+  ngOnInit(): void {
+    this.getProduct();
+  }
+
+  productListMethod() {
+    try {
       this.productService.getProducts()
-      .subscribe(item=>this.ListaProductos=item);
+        .subscribe(item => this.productList = new MatTableDataSource(item))
+
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+
+    this.productList.filter = filterValue.trim();
+
+  }
+
+
+  async getProduct() {
+    try {
+      this.productService.getProducts()
+        .subscribe(item => this.ListaProductos = item);
       console.log(this.ListaProductos);
     }
-    catch(error){
+    catch (error) {
       console.log(error);
 
     }
-}
+  }
 }
 
