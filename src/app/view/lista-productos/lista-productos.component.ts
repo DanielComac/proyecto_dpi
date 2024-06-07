@@ -43,8 +43,8 @@ export class ListaProductosComponent implements OnInit {
     try {
       this.productService.getProducts()
         .subscribe(item => {
-          this.productList = new MatTableDataSource(item); // Asignación correcta a productList
-          console.log(this.productList.data); // Verifica los datos aquí
+          this.productList = new MatTableDataSource(item); 
+          console.log(this.productList.data);
         });
     } catch (error) {
       console.log(error);
