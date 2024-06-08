@@ -50,15 +50,29 @@ export class ProductFormComponent implements OnInit {
   save(): void {
     if (this.formGroup.valid) {
       const productoData = this.formGroup.value;
-      this.productoService.createProduct(productoData).subscribe(
-        (response) => {
-          console.log('Producto creado exitosamente', response);
-          this.dialogRef.close(true);
-        },
-        (error) => {
-          console.error('Error al crear el producto', error);
-        }
-      );
+      if (this.data) {
+        productoData['id'] = this.data._id;
+        console.log(productoData);
+        this.productoService.editProduct(productoData).subscribe(
+          (response) => {
+            console.log("Producto editado exitosamente", response);
+            this.dialogRef.close(true);
+          },
+          (error) => {
+            console.log("Error al editar producto", error);
+          }
+        );
+      } else {
+        this.productoService.createProduct(productoData).subscribe(
+          (response) => {
+            console.log('Producto creado exitosamente', response);
+            this.dialogRef.close(true);
+          },
+          (error) => {
+            console.error('Error al crear el producto', error);
+          }
+        );
+      }
     } else {
       console.error('El formulario no es válido');
       this.dialogRef.close(false);

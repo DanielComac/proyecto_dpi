@@ -3,33 +3,33 @@
 
 <mat-dialog-content>
     <form [formGroup]="formGroup">
-        <mat-form-field appearance="outline">
+        <mat-form-field class="product_input">
             <mat-label>NOMBRE</mat-label>
             <input matInput formControlName="name" required="true">
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field class="product_input">
             <mat-label>CODIGO</mat-label>
             <input matInput formControlName="code" required="true">
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field class="product_input">
             <mat-label>CATEGORIA</mat-label>
             <input matInput formControlName="category" required="true">
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field class="product_input">
             <mat-label>PRECIO</mat-label>
             <span matTextPrefix>$ &nbsp;</span>
             <input matInput formControlName="price" required="true">
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field class="product_input">
             <mat-label>DESCRIPCION</mat-label>
             <input matInput formControlName="description" required="true">
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field class="product_input">
             <mat-label>CANTIDAD</mat-label>
             <input matInput formControlName="amount" type="number" required="true">
         </mat-form-field>
