@@ -10,4 +10,5 @@ export interface Producto {
   status: boolean;
   creationDate: Date;
   deleteDate: Date;
+  eliminar: boolean
 }

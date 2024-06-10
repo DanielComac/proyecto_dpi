@@ -1,7 +1,8 @@
 <h2 mat-dialog-title *ngIf="!data">Agregar producto</h2>
-<h2 mat-dialog-title *ngIf="data">Editar producto</h2>
+<h2 mat-dialog-title *ngIf="data && !data.eliminar">Editar producto</h2>
+<h2 mat-dialog-title *ngIf="data.eliminar">Eliminar producto</h2>
 
-<mat-dialog-content>
+<mat-dialog-content *ngIf="!data?.eliminar">
     <form [formGroup]="formGroup">
         <mat-form-field class="product_input">
             <mat-label>NOMBRE</mat-label>
@@ -37,7 +38,12 @@
     </form>
 </mat-dialog-content>
 
-<mat-dialog-actions>
+<mat-dialog-actions *ngIf="!data?.eliminar">
     <button mat-raised-button (click)="save()">Guardar</button>
+    <button mat-raised-button color="warn" mat-dialog-close="true">Cancelar</button>
+    </mat-dialog-actions>
+<p *ngIf="data?.eliminar">Estas seguro que deseas eliminar este registro?</p>
+<mat-dialog-actions *ngIf="data?.eliminar">
+    <button mat-raised-button (click)="delete(data._id)">Eliminar</button>
     <button mat-raised-button color="warn" mat-dialog-close="true">Cancelar</button>
 </mat-dialog-actions>

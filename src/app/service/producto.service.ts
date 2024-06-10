@@ -26,6 +26,7 @@ export class ProductoService {
   }
 
   deleteProduct(id: string): Observable<any> {
+    console.log(id)
     return this.http.delete(`${this.url}/${id}`);
   }
 

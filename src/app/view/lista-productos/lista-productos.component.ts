@@ -76,5 +76,19 @@ export class ListaProductosComponent implements OnInit {
       }
     })
   }
+
+  deleteDialog(element:Producto) {
+    const dialogRef = this.dialog.open(ProductFormComponent, {
+      data: {...element, eliminar: true},
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log("The dialog was closed");
+      if(result){
+        this.productListMethod();
+        console.log(result)
+      }
+    })
+  }
 }
 

@@ -78,5 +78,16 @@ export class ProductFormComponent implements OnInit {
       this.dialogRef.close(false);
     }
   }
+  delete(id: string){
+    this.productoService.deleteProduct(id).subscribe(
+      (response) => {
+        console.log('Producto eliminado exitosamente', response);
+        this.dialogRef.close(true);
+      },
+      (error) => {
+        console.error('Error al crear el producto', error);
+      }
+    );
+  }
 
 }
