@@ -1,6 +1,6 @@
 <h2 mat-dialog-title *ngIf="!data">Agregar producto</h2>
 <h2 mat-dialog-title *ngIf="data && !data.eliminar">Editar producto</h2>
-<h2 mat-dialog-title *ngIf="data.eliminar">Eliminar producto</h2>
+<h2 mat-dialog-title *ngIf="data?.eliminar">Eliminar producto</h2>
 
 <mat-dialog-content *ngIf="!data?.eliminar">
     <form [formGroup]="formGroup">
