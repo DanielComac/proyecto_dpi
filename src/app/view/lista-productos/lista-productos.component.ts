@@ -27,7 +27,10 @@ export class ListaProductosComponent implements OnInit {
   productListMethod() {
     try {
       this.productService.getProducts()
-        .subscribe(item => this.productList = new MatTableDataSource(item))
+        .subscribe(item => {
+          const filteredItems = item.filter(i => i.status)
+          this.productList = new MatTableDataSource(filteredItems)
+        })
     } catch (error) {
       console.log(error)
     }
@@ -43,7 +46,8 @@ export class ListaProductosComponent implements OnInit {
     try {
       this.productService.getProducts()
         .subscribe(item => {
-          this.productList = new MatTableDataSource(item); 
+          const filteredItems = item.filter(i => i.status)
+          this.productList = new MatTableDataSource(filteredItems); 
           console.log(this.productList.data);
         });
     } catch (error) {
