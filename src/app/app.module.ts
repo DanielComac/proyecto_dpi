@@ -19,13 +19,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListaUsuariosComponent } from './view/lista-usuarios/lista-usuarios.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
     ListaProductosComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ListaUsuariosComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,

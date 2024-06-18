@@ -1,0 +1,54 @@
+<h2 mat-dialog-title *ngIf="!data">Agregar usuario</h2>
+<h2 mat-dialog-title *ngIf="data && !data.eliminar">Editar usuario</h2>
+<h2 mat-dialog-title *ngIf="data?.eliminar">Eliminar usuario</h2>
+
+<mat-dialog-content *ngIf="!data?.eliminar">
+    <form [formGroup]="formGroup">
+        <mat-form-field class="product_input">
+            <mat-label>USERNAME</mat-label>
+            <input matInput formControlName="username" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="product_input">
+            <mat-label>NOMBRE</mat-label>
+            <input matInput formControlName="name" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="product_input">
+            <mat-label>APELLIDOS</mat-label>
+            <input matInput formControlName="lastName" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="product_input">
+            <mat-label>EMAIL</mat-label>
+            <input matInput formControlName="email" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="product_input">
+            <mat-label>TELEFONO</mat-label>
+            <input matInput formControlName="phone" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="product_input">
+            <mat-label>CONTRASEÑA</mat-label>
+            <input matInput formControlName="password" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="product_input">
+            <mat-label>ROL</mat-label>
+            <input matInput formControlName="role" required="true">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="!data?.eliminar">
+    <button mat-raised-button (click)="save()">Guardar</button>
+    <button mat-raised-button color="warn" mat-dialog-close="true">Cancelar</button>
+</mat-dialog-actions>
+<mat-dialog-content>
+    <p *ngIf="data?.eliminar">Estas seguro que deseas eliminar este registro?</p>
+</mat-dialog-content>
+<mat-dialog-actions *ngIf="data?.eliminar">
+    <button mat-raised-button (click)="delete(data._id)">Eliminar</button>
+    <button mat-raised-button color="warn" mat-dialog-close="true">Cancelar</button>
+</mat-dialog-actions>
