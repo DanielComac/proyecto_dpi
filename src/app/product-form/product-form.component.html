@@ -41,8 +41,10 @@
 <mat-dialog-actions *ngIf="!data?.eliminar">
     <button mat-raised-button (click)="save()">Guardar</button>
     <button mat-raised-button color="warn" mat-dialog-close="true">Cancelar</button>
-    </mat-dialog-actions>
-<p *ngIf="data?.eliminar">Estas seguro que deseas eliminar este registro?</p>
+</mat-dialog-actions>
+<mat-dialog-content>
+    <p *ngIf="data?.eliminar">Estas seguro que deseas eliminar este registro?</p>
+</mat-dialog-content>
 <mat-dialog-actions *ngIf="data?.eliminar">
     <button mat-raised-button (click)="delete(data._id)">Eliminar</button>
     <button mat-raised-button color="warn" mat-dialog-close="true">Cancelar</button>
