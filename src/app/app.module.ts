@@ -21,6 +21,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ListaUsuariosComponent } from './view/lista-usuarios/lista-usuarios.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UserFormComponent } from './user-form/user-form.component';
     ListaProductosComponent,
     ProductFormComponent,
     ListaUsuariosComponent,
-    UserFormComponent
+    UserFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
