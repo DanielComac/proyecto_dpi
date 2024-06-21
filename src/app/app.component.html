@@ -1,2 +1,4 @@
-<app-login></app-login>
-<!-- <app-side-nav></app-side-nav> -->
+<app-login *ngIf="router.url === '/login'; else sideNav"></app-login>
+<ng-template #sideNav>
+  <app-side-nav></app-side-nav>
+</ng-template>
