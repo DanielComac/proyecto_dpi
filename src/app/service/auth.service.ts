@@ -16,4 +16,9 @@ export class AuthService {
       tap (user => localStorage.setItem('token', JSON.stringify(user.token))),
     )
   }
+
+  hasToken(): any {
+    const token = localStorage.getItem('token');
+    return!!token;
+  }
 }
