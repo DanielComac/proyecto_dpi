@@ -14,7 +14,7 @@ export const authGuard: CanActivateFn = (route, state) => {
       return false;
     }
   } else {
-    if (state.url === '/product' || state.url === "/user") {
+    if (state.url === '/product' || state.url === "/user" || state.url === "/carrito") {
       router.navigateByUrl('/login');
       return false;
     }
