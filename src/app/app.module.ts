@@ -22,6 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ListaUsuariosComponent } from './view/lista-usuarios/lista-usuarios.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { LoginComponent } from './login/login.component';
+import { CarritoComponent } from './view/carrito/carrito.component';
+import { MatCardModule } from '@angular/material/card'; 
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { LoginComponent } from './login/login.component';
     ProductFormComponent,
     ListaUsuariosComponent,
     UserFormComponent,
-    LoginComponent
+    LoginComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { LoginComponent } from './login/login.component';
     MatListModule,
     HttpClientModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
