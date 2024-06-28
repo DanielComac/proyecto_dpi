@@ -19,4 +19,8 @@ export class CarritoComponent implements OnInit {
       this.total = this.carritoService.obtenerTotal();
     });
   }
+
+  eliminarDelCarrito(producto: Producto) {
+    this.carritoService.eliminarDelCarrito(producto);
+  }
 }

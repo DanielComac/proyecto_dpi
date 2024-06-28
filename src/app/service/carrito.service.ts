@@ -15,6 +15,11 @@ export class CarritoService {
     this.carritoSubject.next(this.carrito);
   }
 
+  eliminarDelCarrito(producto: Producto) {
+    this.carrito = this.carrito.filter(p => p !== producto);
+    this.carritoSubject.next(this.carrito);
+  }
+
   obtenerTotal(): number {
     return this.carrito.reduce((total, producto) => total + producto.price, 0);
   }
