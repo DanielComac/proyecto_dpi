@@ -1,9 +1,16 @@
 <mat-card>
-    <mat-card-header>
-      <mat-card-title>Carrito</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p></p>
-    </mat-card-content>
-  </mat-card>
-  
+  <mat-card-header>
+    <mat-card-title>Carrito</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="carrito.length; else emptyCarrito">
+      <div *ngFor="let producto of carrito">
+        <p>{{ producto.name }} - {{ producto.price | currency }}</p>
+      </div>
+      <h3>Total: {{ total | currency }}</h3>
+    </div>
+    <ng-template #emptyCarrito>
+      <p>El carrito está vacío.</p>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

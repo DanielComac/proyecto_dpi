@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Producto } from 'src/app/model/producto';
 import { ProductFormComponent } from 'src/app/product-form/product-form.component';
 import { ProductoService } from 'src/app/service/producto.service';
+import { CarritoService } from 'src/app/service/carrito.service';
 
 @Component({
   selector: 'app-lista-productos',
@@ -16,7 +17,9 @@ export class ListaProductosComponent implements OnInit {
 
   columnsHeader = ["date", "name", "price", "amount", "status", "opciones"];
 
-  constructor(private productService: ProductoService,
+  constructor(
+    private productService: ProductoService,
+    private carritoService: CarritoService,
     public dialog: MatDialog
   ) { }
 
@@ -28,11 +31,11 @@ export class ListaProductosComponent implements OnInit {
     try {
       this.productService.getProducts()
         .subscribe(item => {
-          const filteredItems = item.filter(i => i.status)
-          this.productList = new MatTableDataSource(filteredItems)
-        })
+          const filteredItems = item.filter(i => i.status);
+          this.productList = new MatTableDataSource(filteredItems);
+        });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
@@ -41,14 +44,12 @@ export class ListaProductosComponent implements OnInit {
     this.productList.filter = filterValue.trim();
   }
 
-
   async getProduct() {
     try {
       this.productService.getProducts()
         .subscribe(item => {
-          const filteredItems = item.filter(i => i.status)
+          const filteredItems = item.filter(i => i.status);
           this.productList = new MatTableDataSource(filteredItems); 
-          console.log(this.productList.data);
         });
     } catch (error) {
       console.log(error);
@@ -61,38 +62,37 @@ export class ListaProductosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log("The dialog was closed");
-      if(result) {
+      if (result) {
         this.productListMethod();
       }
     });
   }
 
-  editDialog(element:Producto) {
+  editDialog(element: Producto) {
     const dialogRef = this.dialog.open(ProductFormComponent, {
       data: element,
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log("The dialog was closed");
-      if(result){
+      if (result) {
         this.productListMethod();
       }
-    })
+    });
   }
 
-  deleteDialog(element:Producto) {
+  deleteDialog(element: Producto) {
     const dialogRef = this.dialog.open(ProductFormComponent, {
-      data: {...element, eliminar: true},
+      data: { ...element, eliminar: true },
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log("The dialog was closed");
-      if(result){
+      if (result) {
         this.productListMethod();
-        console.log(result)
       }
-    })
+    });
+  }
+
+  agregarAlCarrito(producto: Producto) {
+    this.carritoService.agregarAlCarrito(producto);
   }
 }
-
